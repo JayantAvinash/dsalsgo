@@ -1,16 +1,17 @@
 package com.prac.dsalgo.structures;
 
-import java.util.LinkedList;
 import java.util.Stack;
 
 public class BinarySearchTree {
 	
 	Node root;
+	int size;
 	
 	public boolean insert(int a) {
 		Node temp = new Node(a, null, null);
 		if(root == null) {
 			root = temp;
+			size++;
 			return true;
 		} else {
 			return insert(root, temp);
@@ -21,12 +22,14 @@ public class BinarySearchTree {
 		if(inserted.val < current.val) {
 			if(current.lTree == null) {
 				current.lTree = inserted;
+				size++;
 				return true;
 			}
 			return insert(current.lTree, inserted);
 		} else {
 			if(current.rTree == null) {
 				current.rTree = inserted;
+				size++;
 				return true;
 			}
 			return insert(current.rTree, inserted);
@@ -210,17 +213,27 @@ public class BinarySearchTree {
 		}
 	}
 	
+	public int getSize() {
+		return size;
+	}
+	
+	public boolean isEmpty() {
+		return size == 0;
+	}
+	
 	public static void main(String[] args) {
 		BinarySearchTree bst = new BinarySearchTree();
+		System.out.println(bst.getSize());
 		bst.insert(5);
 		bst.insert(7);
 		bst.insert(3);
+		System.out.println(bst.getSize());
 		bst.insert(6);
 		bst.insert(4);
 		bst.insert(2);
 		bst.insert(8);
 		bst.insert(1);
-		
+		System.out.println(bst.getSize());
 		bst.recursiveInorder();
 		System.out.println();
 		bst.recursivePreorder();
