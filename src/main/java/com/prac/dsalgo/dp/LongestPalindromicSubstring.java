@@ -4,6 +4,9 @@ public class LongestPalindromicSubstring {
 	
 	String getLongestPalindromicSubstring(String str) {
 		int n = str.length();
+		if(n == 0) {
+			return "";
+		}
 		boolean [][]palindrome = new boolean[n][n];
 		int maxlength = 1, start = 0;
 		for(int i = 0; i < n; i++) {
@@ -31,7 +34,7 @@ public class LongestPalindromicSubstring {
 	}
 
 	public static void main(String[] args) {
-		String str = "forgeeksskeegfor";
+		String str = "";
 		LongestPalindromicSubstring l = new LongestPalindromicSubstring();
 		System.out.println("Longest substring is: " + l.getLongestPalindromicSubstring(str));
 	}
