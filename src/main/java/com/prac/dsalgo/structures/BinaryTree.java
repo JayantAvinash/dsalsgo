@@ -194,6 +194,41 @@ public class BinaryTree {
 		}
 	}
 	
+	public void zigzagOrder() {
+		if(root == null) {
+			return;
+		}
+		Stack<Node> current = new Stack<>();
+		Stack<Node> children = new Stack<>();
+		current.push(root);
+		boolean left = true;
+		while(!current.isEmpty()) {
+			Node n = current.pop();
+			System.out.print(n.val + " ");
+			if(left) {
+				if(n.lTree != null) {
+					children.push(n.lTree);
+				}
+				if(n.rTree != null) {
+					children.push(n.rTree);
+				}
+			} else {
+				if(n.rTree != null) {
+					children.push(n.rTree);
+				}
+				if(n.lTree != null) {
+					children.push(n.lTree);
+				}
+			}
+			if(current.isEmpty()) {
+				Stack<Node> temp = current;
+				current = children;
+				children = temp;
+				left = !left;
+			}
+		}
+	}
+	
 	//delete node and replace it with most extreme leaf node
 	public boolean deleteNode(int n) {
 		if(root == null) {
@@ -294,6 +329,8 @@ public class BinaryTree {
 		System.out.println();
 		b.deleteNode(9);
 		b.levelOrderByQueue();
+		System.out.println();
+		b.zigzagOrder();
 	}
 
 	class Node {
