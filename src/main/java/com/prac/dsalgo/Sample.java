@@ -1,15 +1,45 @@
 package com.prac.dsalgo;
 
+import java.util.Arrays;
+import java.util.Stack;
+
 public class Sample {
-
+	
+	public static void mergeSort(int []arr, int from, int to) {
+        if(from >= to) {
+            return;
+        }
+        int mid = (from + to)/2;
+        mergeSort(arr, from, mid);
+        mergeSort(arr, mid + 1, to);
+        mergeArrays(arr, from, to, mid);
+    }
+    
+    public static void mergeArrays(int []arr, int from, int to, int mid) {
+        int []tempArr = new int[to - from + 1];
+        int i = from, j = mid + 1;
+        int k = 0;
+        while(i <= mid && j <= to) {
+            if(arr[i] < arr[j]) {
+                tempArr[k++] = arr[i++];
+            } else {
+                tempArr[k++] = arr[j++];
+            }
+        }
+        while(i <= mid) {
+            tempArr[k++] = arr[i++];
+        }
+        while(j <= to) {
+            tempArr[k++] = arr[j++];
+        }
+        k = 0;
+        for(int l = from; l <= to; l++) {
+            arr[l] = tempArr[k++];
+        }
+    }
 	public static void main(String[] args) {
-		//["2 03726945 0 4","0af admbife w q","bp nvmedogf dxn","a qtdnisj eznls","4k rswcdmprf x","5e tpoixwmfrszu","4kq ycgbw pmgp","ygm zfobjy cwsx","9 37505078 053","6 581295212437","c 918054182 688","p6 1043538731 5","b 5443051 7122","o5 2090115 436","2fw 7596601 71"]
-		String s = "ttzoz 035658365825 9";
-		String log = s.substring(s.indexOf(" ") + 1, s.length());
-        /*if(log.indexOf(" ") != -1) {
-            log = log.substring(0, log.indexOf(" "));
-        }*/
-		System.out.println(log.charAt(0) - '0');
+		int []arr = {5, 4, 3, 2, 1};
+		mergeSort(arr, 0, 4);
+		System.out.println(Arrays.toString(arr));
 	}
-
 }

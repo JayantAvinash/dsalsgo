@@ -16,6 +16,7 @@ public class MinHeap {
 		position++;
 		if (position > size) {
 			System.out.println("Array already full");
+			return;
 		}
 		heapArray[position] = a;
 		heapifyUp();

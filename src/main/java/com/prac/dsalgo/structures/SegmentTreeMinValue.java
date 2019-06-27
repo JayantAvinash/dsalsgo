@@ -42,7 +42,7 @@ public class SegmentTreeMinValue {
 	public static void main(String[] args) {
 		int arr[] = {1, 3, 2, 7, 9, 11};
 		SegmentTreeMinValue tree = new SegmentTreeMinValue(arr);
-		System.out.println("Min value in range 1 to 3 is:" + tree.getMinValueInrange(arr.length, 0, 3));
+		System.out.println("Min value in range 1 to 3 is:" + tree.getMinValueInrange(arr.length, 0, 2));
 	}
 
 }

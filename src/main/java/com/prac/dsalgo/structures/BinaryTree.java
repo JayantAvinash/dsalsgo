@@ -280,6 +280,20 @@ public class BinaryTree {
 		}
 		
 	}
+	
+	boolean checkBST(Node root) {
+        return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBSTUtil(Node root, int min, int max) {
+        if(root == null) {
+            return true;
+        }
+        if(root.val < min || root.val > max) {
+            return false;
+        }
+        return isBSTUtil(root.lTree, min, root.val - 1) || isBSTUtil(root.rTree, root.val + 1, max);
+    }
 
 	public void Preorder(Node root1) {
 		if (root1 == null) {
