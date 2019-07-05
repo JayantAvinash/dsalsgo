@@ -1,23 +1,22 @@
 package com.prac.dsalgo.arrays;
 
 public class MaxSumSubArray {
-	
-	//O(n) approach
+
+	// O(n) approach
 	public int maxSubArray(int[] nums) {
 		int overallMax = 0, currentSum = 0, maxElement = Integer.MIN_VALUE;
-        for(int i = 0; i < nums.length; i++) {
-            maxElement = Math.max(maxElement, nums[i]);
-            if(currentSum + nums[i] > 0) {
-                currentSum += nums[i];
-                overallMax = Math.max(overallMax, currentSum);
-            } else {
-                currentSum = 0;
-            }
-        }
-        return overallMax == 0 ? maxElement : overallMax;
+		for (int i = 0; i < nums.length; i++) {
+			maxElement = Math.max(maxElement, nums[i]);
+			if (currentSum + nums[i] > 0) {
+				currentSum += nums[i];
+				overallMax = Math.max(overallMax, currentSum);
+			} else {
+				currentSum = 0;
+			}
+		}
+		return overallMax == 0 ? maxElement : overallMax;
 	}
-	
-	
+
 	// Divide and Conquer approach nlogn
 	private int maxSubArraySum(int[] nums, int from, int to) {
 		if (from == to) {
@@ -46,7 +45,7 @@ public class MaxSumSubArray {
 
 	public static void main(String[] args) {
 		MaxSumSubArray m = new MaxSumSubArray();
-		int []arr = {-2,1,-3,4,-1,2,1,-5,4};
+		int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
 		System.out.println(m.maxSubArray(arr));
 		System.out.println(m.maxSubArraySum(arr, 0, arr.length - 1));
 	}
