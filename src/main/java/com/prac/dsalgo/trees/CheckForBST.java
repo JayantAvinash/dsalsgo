@@ -1,4 +1,4 @@
-package com.prac.dsalgo.general;
+package com.prac.dsalgo.trees;
 
 import java.util.Stack;
 

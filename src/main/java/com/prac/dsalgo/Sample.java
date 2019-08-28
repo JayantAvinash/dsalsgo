@@ -1,24 +1,40 @@
 package com.prac.dsalgo;
 
 public class Sample {
-	
-	public static void main(String[] args) {
-		char c = 'a' + 1;
-		System.out.println(reverse(-120));
-	}
-	
-	
-	public static int reverse(int x) {
-        int n = 0;
-        int temp = x;
-        while(x != 0) {
-            n = 10*n + x % 10;
-            x /= 10;
+
+	public String longestPalindrome(String s) {
+        if(s == null) {
+            return s;
         }
-        /*if(temp < 0) {
-            n = -n;
-        }*/
-        return n;
+        int length = s.length();
+        if(length < 2) {
+            return s;
+        }
+        int [][]subSeqLength = new int[length][length];
+        for(int i = 0; i < length; i++) {
+            subSeqLength[i][i] = 1;
+        }
+        int startIndex = 0;
+        int maxLength = 1;
+        for(int len = 2; len <= length; len++) {
+            for(int i = 0; i <= length - len;i++) {
+                int j = i + len - 1;
+                if(s.charAt(i) == s.charAt(j)) {
+                    subSeqLength[i][j] = 2 + subSeqLength[i + 1][j - 1];
+                } else {
+                    subSeqLength[i][j] = Math.max(subSeqLength[i + 1][j], subSeqLength[i][j - 1]);
+                }
+                if(subSeqLength[i][j] > maxLength) {
+                    maxLength = subSeqLength[i][j];
+                    startIndex = i;
+                }
+            }
+        }
+        return s.substring(startIndex, startIndex + maxLength);
     }
-	
+	public static void main(String[] args) {
+		Sample s = new Sample();
+		System.out.println(s.longestPalindrome("abcda"));
+	}
+
 }

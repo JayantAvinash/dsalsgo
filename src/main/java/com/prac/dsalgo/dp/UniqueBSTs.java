@@ -1,4 +1,4 @@
-package com.prac.dsalgo.dsalgo;
+package com.prac.dsalgo.dp;
 
 // https://leetcode.com/problems/unique-binary-search-trees/
 public class UniqueBSTs {
